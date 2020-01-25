@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Aphorisms;
+use App\AphorismsAuthors;
+use App\AphorismsCategory;
+use App\AphorismsTags;
 
 class AphorismsController extends Controller
 {
@@ -37,11 +40,36 @@ class AphorismsController extends Controller
     public function store(Request $request)
     {
 
-        echo 'store';
-        return $request->response();
-        // return response()->json(['success' => true, 'data' => 'Данные успешно сохранены']);
-        //
+        $author = AphorismsAuthors::firstOrCreate([
+            'name' => $request->author,
+            'machine_name' => 'default',
+        ]);
 
+        $category = AphorismsCategory::firstOrCreate([
+            'name' => $request->category,
+            'machine_name' => 'default',
+        ]);
+
+        $aphorism = Aphorisms::where('body', $request->body)->first();
+
+        if (empty($aphorism)) {
+            $newAphorism = AphorismsTags::create([
+                'body' => $request->body,
+                'authors_id' => $author->id,
+                'categories_id' => $category->id
+            ]);
+
+            foreach ($request->tags as $tag) {
+                AphorismsTags::firstOrCreate([
+                    'name' => $tag,
+                    'aphorisms_id' => $newAphorism->id,
+                    'machine_name' => 'default',
+                ]);
+            }
+        }
+
+
+        // return response()->json(['success' => true, 'data' => 'Данные успешно сохранены']);
     }
 
     /**
@@ -54,7 +82,9 @@ class AphorismsController extends Controller
     {
         $aphorisms = Aphorisms::all();
 
-        dd($aphorisms);
+        foreach ($aphorisms as  $article) {
+            echo $article->body . "<br />";
+        }
     }
 
     /**

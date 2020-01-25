@@ -4,18 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AphorismTags extends Model
+class AphorismsTags extends Model
 {
     /**
      * Связанная с моделью таблица.
-     *
-     * @var string
      */
     protected $table = 'aphorisms_tags';
     /**
-     * Получить Афоризм для данного тега
+     * Разрешаем добавлять данные к полям.
      */
-    public function post()
+    protected $fillable = ['name', 'machine_name'];
+    /**
+     * Получить афоризмы.
+     */
+    public function getAphorisms()
     {
         return $this->belongsTo('App\Aphorisms');
     }

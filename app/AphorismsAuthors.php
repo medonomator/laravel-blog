@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AphorismsCategory extends Model
+class AphorismsAuthors extends Model
 {
     /**
      * Связанная с моделью таблица.
      */
-    protected $table = 'aphorisms_categories';
+    protected $table = 'aphorisms_authors';
     /**
      * Разрешаем добавлять данные к полям.
      */
