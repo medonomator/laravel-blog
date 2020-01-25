@@ -13,7 +13,7 @@ class CreateAphorismTags extends Migration
      */
     public function up()
     {
-        Schema::create('aphorism_tags', function (Blueprint $table) {
+        Schema::create('aphorisms_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('machine_name');
@@ -30,6 +30,6 @@ class CreateAphorismTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aphorism_tags');
+        Schema::dropIfExists('aphorisms_tags');
     }
 }

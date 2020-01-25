@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,27 +10,10 @@
 |
 */
 
-
-
 Route::get('/', function () {
-    $aphorisms = DB::table('aphorisms')->get();
-
-    return response()
-        ->json(['name' => 'Abigail', 'state' => 'CA']);
-    return view('welcome', compact('tasks'));
+    return view('index');
 });
 
-Route::get('/tasks', function () {
-    $tasks = DB::table('tasks')->get();
-    return view('welcome', compact('tasks'));
-});
-
-Route::get('/tasks/{task}', function ($id) {
-    $tasks = DB::table('tasks')->get();
-    dd($tasks);
-    return view('welcome', compact('tasks'));
-});
+Route::resource('/aphorisms', 'AphorismsController');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

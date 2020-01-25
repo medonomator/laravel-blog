@@ -15,9 +15,11 @@ class CreateAphorismsTable extends Migration
     {
         Schema::create('aphorisms', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('author');
-            $table->string('body');
-            $table->string('category');
+            $table->text('body');
+            $table->integer('authors_id')->unsigned()->default(1);
+            $table->foreign('authors_id')->references('id')->on('aphorisms_authors');
+            $table->integer('categories_id')->unsigned()->default(1);
+            $table->foreign('categories_id')->references('id')->on('aphorisms_categories');
             $table->timestamps();
         });
     }

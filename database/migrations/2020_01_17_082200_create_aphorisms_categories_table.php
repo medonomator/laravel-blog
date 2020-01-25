@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAphorismAuthors extends Migration
+class CreateAphorismsCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateAphorismAuthors extends Migration
      */
     public function up()
     {
-        Schema::create('aphorism_authors', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('aphorisms_categories', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name');
             $table->string('machine_name');
-            $table->integer('aphorisms_id')->unsigned()->default(1);
-            $table->foreign('aphorisms_id')->references('id')->on('aphorisms');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateAphorismAuthors extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aphorism_authors');
+        Schema::dropIfExists('aphorisms_categories');
     }
 }
