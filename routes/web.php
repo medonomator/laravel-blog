@@ -10,9 +10,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'AphorismsController@index');
 
 Route::resource('/aphorisms', 'AphorismsController');
 

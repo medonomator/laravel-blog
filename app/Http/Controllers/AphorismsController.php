@@ -16,9 +16,13 @@ class AphorismsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        echo 'index';
+        // TOOD: get all data
+        $aphorisms = Aphorisms::all();
+        if (view()->exists('index')) {
+            return view('index', ['aphorisms' => $aphorisms]);
+        }
     }
 
     /**
@@ -39,7 +43,6 @@ class AphorismsController extends Controller
      */
     public function store(Request $request)
     {
-
         $author = AphorismsAuthors::firstOrCreate([
             'name' => $request->author,
             'machine_name' => 'default',
@@ -67,9 +70,6 @@ class AphorismsController extends Controller
                 ]);
             }
         }
-
-
-        // return response()->json(['success' => true, 'data' => 'Данные успешно сохранены']);
     }
 
     /**
@@ -80,11 +80,7 @@ class AphorismsController extends Controller
      */
     public function show($id)
     {
-        $aphorisms = Aphorisms::all();
-
-        foreach ($aphorisms as  $article) {
-            echo $article->body . "<br />";
-        }
+        //
     }
 
     /**
@@ -118,6 +114,6 @@ class AphorismsController extends Controller
      */
     public function destroy($id)
     {
-        echo $id;
+        //
     }
 }

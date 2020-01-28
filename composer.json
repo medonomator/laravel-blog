@@ -13,7 +13,8 @@
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "lukebaird/dropbox-v2-php-sdk": "^1.1",
-        "maximebf/debugbar": "1.*"
+        "maximebf/debugbar": "1.*",
+        "psy/psysh": "*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
